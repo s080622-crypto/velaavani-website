@@ -79,6 +79,10 @@ footer{background:var(--teal);color:#d4e6e3;padding:40px 0;font-size:.92rem}
 footer a{color:#fff}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--teal);color:#fff;padding:10px 16px;display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
 .sticky .btn{background:var(--aqua);color:var(--teal);padding:8px 20px}
+.wa-float{position:fixed;right:18px;bottom:78px;z-index:40;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s}
+.wa-float:hover{transform:scale(1.08);background:#1ebe5b}
+.wa-float svg{width:32px;height:32px;fill:#fff}
+@media(max-width:600px){.wa-float{right:14px;bottom:92px;width:54px;height:54px}}
 .ok{color:var(--teal);font-weight:700;margin-top:10px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -254,17 +258,20 @@ footer a{color:#fff}
 
 <div class="sticky"><span data-i="sticky">From $105 / night · Free breakfast &amp; snorkel gear</span><a class="btn" href="#book" data-i="booknow">Book direct now</a></div>
 
+<a class="wa-float" href="https://wa.me/9600000000" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.38 4 15.02c0 2.12.55 4.19 1.6 6.01L4 29l8.14-1.56a12 12 0 0 0 3.9.65C22.68 28.09 28 22.7 28 16.06 28 9.4 22.68 3 16.04 3zm0 22.08c-1.2 0-2.38-.24-3.48-.7l-.5-.2-4.84.93.97-4.7-.23-.52a9.1 9.1 0 0 1-1.4-4.87c0-5.04 4.1-9.14 9.15-9.14 5.04 0 9.15 4.1 9.15 9.14 0 5.05-4.1 9.06-9.12 9.06zm5.03-6.8c-.27-.14-1.6-.8-1.85-.88-.25-.1-.43-.14-.6.13-.18.27-.7.88-.86 1.06-.16.18-.32.2-.6.07-.27-.14-1.15-.42-2.2-1.35-.8-.72-1.35-1.6-1.5-1.87-.16-.27-.02-.42.12-.55.12-.12.27-.32.4-.48.14-.16.18-.27.27-.45.1-.18.05-.34-.02-.48-.07-.14-.6-1.45-.83-1.98-.22-.52-.44-.45-.6-.46h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.95 4.67 4.13.65.28 1.16.45 1.56.58.65.2 1.25.18 1.72.1.52-.08 1.6-.65 1.82-1.29.23-.63.23-1.17.16-1.29-.07-.12-.25-.2-.52-.34z"/></svg></a>
+
 <script>
 // Gallery
-var G={rooms:["Ocean Balcony Suite","King teak bed","Rainfall shower","Garden Villa terrace"],property:["House jetty","Sundeck","Garden courtyard","Transparent kayaks"],beach:["Bikini beach","Sandbank at low tide","Sunset shoreline","Lagoon shallows"],dining:["Mashuni & roshi breakfast","Fresh tuna lunch","Island dinner","Coconut and fruit"],attractions:["House reef turtles","Sandbank trip","Dolphin cruise","Dhiffushi village walk"]};
+var G={suites:["Deluxe Ocean Balcony Suite","Teak king bed with sea breeze","Open rainfall shower","Private sundeck over the water","Garden Villa Studio","Garden terrace & botanical shower"],hive:["VelaaVani guesthouse entrance","Turtle Hive house jetty","Transparent kayaks & paddleboards","Sundeck with Starlink Wi-Fi","Teak lounge & garden courtyard"],lagoon:["Dhiffushi bikini beach","Sandbank at low tide","Sunset over the lagoon","Warm lagoon shallows"],kitchen:["Free Maldivian breakfast: mashuni & roshi","Fresh catch of the day","Island lunch & dinner on request","Coconut & tropical fruit"],turtles:["Snorkeling with green turtles","Hawksbill at our house reef","Guided trip with our marine naturalist","Sandbank excursion","Dolphin cruise","Dhiffushi village walk"],arrival:["Meet & greet at Velana Airport, Counter B-12","Speedboat to Dhiffushi, 45 min","Harbour buggy to VelaaVani","Welcome to the Hive"]};
+var L={suites:"Rooms & Suites",hive:"Turtle Hive",lagoon:"Beach & Lagoon",kitchen:"Island Kitchen",turtles:"Turtles & Trips",arrival:"Getting Here"};
 var C=[["#0E3A40","#8EBBB5"],["#1c5a5e","#e9d9b8"],["#8EBBB5","#F6F3ED"],["#d9a46a","#0E3A40"]];
 var tabs=document.getElementById('tabs'),gal=document.getElementById('gal');
 function show(k){
  gal.innerHTML=G[k].map(function(t,i){return '<div class="tile" role="img" aria-label="'+t+'" style="background:linear-gradient(135deg,'+C[i%4][0]+','+C[i%4][1]+')">'+t+'</div>'}).join('');
  [].forEach.call(tabs.children,function(b){b.setAttribute('aria-pressed',b.dataset.k===k)});
 }
-Object.keys(G).forEach(function(k){var b=document.createElement('button');b.textContent=k[0].toUpperCase()+k.slice(1);b.dataset.k=k;b.onclick=function(){show(k)};tabs.appendChild(b)});
-show('rooms');
+Object.keys(G).forEach(function(k){var b=document.createElement('button');b.textContent=L[k];b.dataset.k=k;b.onclick=function(){show(k)};tabs.appendChild(b)});
+show('suites');
 
 // Languages
 var T={
